@@ -23,7 +23,7 @@ func (r *TvRepository) FindAll() ([]models.Tv, error) {
 
 func (r *TvRepository) FindById(params int) (models.Tv, error) {
 	var data models.Tv
-	err := r.db.First(params, &data).Error
+	err := r.db.First(&data, params).Error
 	return data, err
 }
 
@@ -40,9 +40,10 @@ func (r *TvRepository) Create(params models.Tv) (models.Tv, error) {
 
 func (r *TvRepository) Update(params models.Tv) error {
 	return r.db.Model(&params).Updates(map[string]interface{}{
-		"brand": params.Brand,
-		"price": params.Price,
-		"qty":   params.Quantity,
+		"brand":      params.Brand,
+		"price":      params.Price,
+		"qty":        params.Qty,
+		"updated_at": params.UpdatedAt,
 	}).Error
 }
 

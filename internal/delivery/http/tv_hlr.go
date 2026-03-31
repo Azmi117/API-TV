@@ -71,6 +71,7 @@ func (h *TvHandler) Create(w http.ResponseWriter, r *http.Request) {
 
 	if err != nil {
 		SendError(w, err)
+		return
 	}
 
 	w.Header().Set("Content-Type", "application/json")
